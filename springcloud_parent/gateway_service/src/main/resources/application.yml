@@ -20,7 +20,10 @@ spring:
             # - Path=/user/**
             - Path=/**
           filters:
-            - PrefixPath=/user  #当前的所有请求添加 前缀
+           # - PrefixPath=/user  #当前的所有请求添加 前缀
+            - StripPrefix=1  #  去除路径的前缀一个/ 识别为一个路径
+            - MyParam=name
+
       default-filters:
         # 往响应过滤器中加入响应头信息
         - AddResponseHeader=X-Response-Default-MyName,zengjx
