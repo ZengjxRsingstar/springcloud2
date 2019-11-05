@@ -1,24 +1,23 @@
-package com.zengjx;
+package zengjx;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * @ClassName HelloController
  * @Description TODO
  * @Author zengjx
  * @Company zengjx
- * @Date 2019/11/3  10:32
+ * @Date 2019/11/4  20:45
  * @Version V1.0
  */
 @SpringBootApplication
-@EnableEurekaServer //开启Eureka服务Service
-public class EurekaServerApplication {
+@EnableDiscoveryClient  //发现Eureka
+public class GateWayApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(EurekaServerApplication.class);
+        SpringApplication.run(GateWayApplication.class);
 
     }
-
 }

@@ -1,0 +1,32 @@
+# 注释版本
+server:
+  port: 18085
+spring:
+  application:
+    name: api-gateway  # 应用名
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          route-id-prefix:
+      routes:
+        - id: user-service-route
+          # 路由的服务地址
+          # lb 协议表示从Eureka 注册中心获取服务请求地址
+          # 路由地址如果通过lb 协议加名称会自动使用负载均衡访问对应服务
+          uri:  lb://user-provider      # http://localhost:18081
+          # 路由断言：路由拦截
+          predicates:
+            # - Path=/user/**
+            - Path=/**
+          filters:
+            - PrefixPath=/user  #当前的所有请求添加 前缀
+      default-filters:
+        # 往响应过滤器中加入响应头信息
+        - AddResponseHeader=X-Response-Default-MyName,zengjx
+#Eereka 中心服务配置
+eureka:
+  client:
+    service-url:
+      #注册 Eureka service 集群
+       defaultZone: http://127.0.0.1:7001/eureka

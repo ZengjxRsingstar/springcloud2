@@ -7,6 +7,7 @@ import com.netflix.ribbon.proxy.annotation.Hystrix;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,13 +47,18 @@ public class UserContrller {
    public User findUserById(@PathVariable(value ="id") Integer  id){
 
     List<ServiceInstance> instanceList = discoveryClient.getInstances("user-provider");
-
     ServiceInstance serviceInstance = instanceList.get(0);
-    URI uri= serviceInstance.getUri();
-    System.out.println("uri="+uri);
+    URI uri= serviceInstance.getUri();//通过这种方式负载负载均衡要关闭  按名称解析user-provider
+    System.out.println("uri="+uri);//uri=http://127.0.0.1:18081
     //String  url="http://"+serviceInstance.getHost()+":"+serviceInstance.getPort()+"/user/"+id;
+    String str_url="http://127.0.0.1:18081/user/"+id;
+     System.out.println(str_url);
+    String url = "http://user-provider/user/"+id;//USER-PROVIDER
 
-    String url = "http://user-provider/user/"+id;
+
+
+
+     List<ServiceInstance> instanceList2 = discoveryClient.getInstances("user-provider");
   return   restTemplate.getForObject(url,User.class);
 
 

@@ -30,12 +30,12 @@ public class UserController {
         user.setName(user.getUsername()+"生产者1");
 
 
-        try {
-            Thread.sleep(3000);
-            System.out.println("休眠3秒");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(3000);
+//            System.out.println("休眠3秒");
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         return user;
     }
 }

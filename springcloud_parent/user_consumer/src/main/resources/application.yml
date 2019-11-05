@@ -38,3 +38,19 @@ hystrix:
           thread:
             # 熔断超时设置，默认为1秒
             timeoutInMilliseconds: 1000
+feign:
+  hystrix:
+    enabled: true # 开启Feign 的熔断功能
+
+  compression:
+    request:
+      enabled: true
+      mime-types: text/html,appliction/xml,application/json # 壓縮類型
+      min-request-size: 2048
+      #  以上
+    response:
+      enabled: true  #  開啟響應
+#配置普通日志级别
+logging:
+  level:
+     com.zengjx: debug

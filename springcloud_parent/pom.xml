@@ -13,6 +13,7 @@
         <module>user_provider</module>
         <module>user_provider2</module>
         <module>user_consumer</module>
+        <module>gateway_service</module>
     </modules>
 
     <!--父工程-->
